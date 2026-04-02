@@ -1,4 +1,5 @@
 from flask import Flask, send_from_directory
+from flask_cors import CORS
 from config import Config
 
 from routes.auth import auth_bp
@@ -6,7 +7,9 @@ from routes.student import student_bp
 from routes.provider import provider_bp
 from routes.admin import admin_bp
 
+
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 app.config.from_object(Config)
 
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
